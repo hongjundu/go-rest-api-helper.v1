@@ -23,7 +23,7 @@ func handlerReturnsOK(r *http.Request) (response interface{}, err error) {
 		FirstName string `json:"firstName"`
 		LastName  string `json:"lastName"`
 	}
-	response = &Resp{FirstName: "Jon", LastName: "Snow"}
+	response = apihelper.NewOKResponse(Resp{FirstName: "Jon", LastName: "Snow"})
 	return
 }
 

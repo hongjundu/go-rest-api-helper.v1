@@ -6,7 +6,7 @@ const (
 )
 
 func NewOKResponse(data interface{}) interface{} {
-	return &apiResponse{Status: ResponseStatusOK, Data: data}
+	return &apiResponse{Status: ResponseStatusOK, Code: 200, Data: data}
 }
 
 func NewListResponse(count int, list interface{}) interface{} {
