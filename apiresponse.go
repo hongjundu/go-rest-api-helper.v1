@@ -28,7 +28,7 @@ func NewErrorResponse(err error) interface{} {
 // ok response format:
 // {"status":"ok","data":{ ... }}
 // error response format:
-// {"status":"error","code":"error_code","msg":"error message description"}
+// {"status":"error","code":400,"msg":"error message description"}
 
 type apiResponse struct {
 	Status string      `json:"status"`

@@ -17,7 +17,7 @@ A set of small data structure that help to write rest API response.
 
         {
             "status": "error",
-            "code": "some_error_code",
+            "code": some_error_code,
             "msg": "some error message"
         }
 
@@ -68,6 +68,10 @@ A set of small data structure that help to write rest API response.
             }
 
             if err != nil {
+                if apiErr, ok := err.(apihelper.ApiError); ok {
+                    w.WriteHeader(apiErr.Code())
+                }
+                
                 responseBody, _ = json.Marshal(apihelper.NewErrorResponse(err))
             }
 

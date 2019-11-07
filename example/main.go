@@ -43,7 +43,7 @@ func wrapHandler(handler func(r *http.Request) (interface{}, error)) func(w http
 		}
 
 		if err != nil {
-			if apiErr, ok := err.(ApiError); ok {
+			if apiErr, ok := err.(apihelper.ApiError); ok {
 				w.WriteHeader(apiErr.Code())
 			}
 

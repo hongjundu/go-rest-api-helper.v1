@@ -25,7 +25,7 @@ func ReadFormValueInt(r *http.Request, formKey string, defaultValue int64) (n in
 
 	n, err = strconv.ParseInt(s, 10, 64)
 	if err != nil {
-		err = NewError(ErrorCodeBadArgument, err.Error())
+		err = NewError(http.StatusBadRequest, err.Error())
 	}
 
 	return
