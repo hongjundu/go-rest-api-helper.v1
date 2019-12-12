@@ -10,11 +10,19 @@ func NewOKResponse(data interface{}) interface{} {
 }
 
 func NewListResponse(count int, list interface{}) interface{} {
-	return NewOKResponse(&responseListData{List: list, Count: count})
+	return NewOKResponse(NewListResponseData(count, list))
 }
 
 func NewPageableListResponse(total, count, page, limit int, list interface{}) interface{} {
-	return NewOKResponse(&pageableResponseListData{responseListData: responseListData{List: list, Count: count}, Total: total, Page: page, Limit: limit})
+	return NewOKResponse(NewPageableListResponseData(total, count, page, limit, list))
+}
+
+func NewListResponseData(count int, list interface{}) interface{} {
+	return &responseListData{List: list, Count: count}
+}
+
+func NewPageableListResponseData(total, count, page, limit int, list interface{}) interface{} {
+	return &pageableResponseListData{responseListData: responseListData{List: list, Count: count}, Total: total, Page: page, Limit: limit}
 }
 
 func NewErrorResponse(err error) interface{} {
