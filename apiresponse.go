@@ -13,6 +13,10 @@ func NewListResponse(count int, list interface{}) interface{} {
 	return NewOKResponse(&responseListData{List: list, Count: count})
 }
 
+func NewPageableListResponse(total, count, page, limit int, list interface{}) interface{} {
+	return NewOKResponse(&pageableResponseListData{responseListData: responseListData{List: list, Count: count}, Total: total, Page: page, Limit: limit})
+}
+
 func NewErrorResponse(err error) interface{} {
 	if err == nil {
 		return NewOKResponse(nil)
@@ -40,4 +44,11 @@ type apiResponse struct {
 type responseListData struct {
 	Count int         `json:"count"`
 	List  interface{} `json:"list,omitempty"`
+}
+
+type pageableResponseListData struct {
+	responseListData
+	Total int `json:"total"`
+	Page  int `json:"page,omitempty"`
+	Limit int `json:"limit,omitempty"`
 }
